@@ -28,4 +28,9 @@ public class CervejasController {
 		return "redirect:novo";
 	}
 	
+	@RequestMapping("/cervejas/cadastro")
+	public String cadastro() {
+		return "cerveja/cadastro-produto";
+	}
+	
 }
