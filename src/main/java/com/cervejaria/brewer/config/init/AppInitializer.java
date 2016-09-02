@@ -1,5 +1,8 @@
 package com.cervejaria.brewer.config.init;
 
+import javax.servlet.Filter;
+
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.cervejaria.brewer.config.WebConfig;
@@ -22,5 +25,11 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 		return new String[] {"/"};
 	}
 
-
+	@Override
+	protected Filter[] getServletFilters() {
+		CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
+		encodingFilter.setEncoding("UTF-8");
+		encodingFilter.setForceEncoding(true);
+		return new Filter[]  {encodingFilter};
+	}
 }

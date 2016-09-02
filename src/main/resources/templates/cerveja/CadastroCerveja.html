@@ -1,10 +1,29 @@
 <!doctype html>
-<html lang="pt">
+<html lang="pt"
+				xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8" />
 	<title>Cadastro de Cerveja</title>
 </head>
 <body>
-		<h1>Testando ...</h1>
+		<form method="POST" th:object="${cerveja}">
+			<div th:each="error : ${#fields.detailedErrors()}">
+				<span th:text="${error.message}"></span>
+			</div>
+			<span th:text="${mensagem}"></span>
+			<br />
+			<label for="sku">SKU</label>
+			<input type="text" id="sku"  th:field="*{sku}"/>
+			<br />
+			<label for="nome">Nome</label>
+			<input type="text" id="nome" th:field="*{nome}" />
+			<br />
+			<laber for="descricao">Descrição</laber>
+			<textarea id="descricao"  rows="4" th:field="*{descricao}">
+			</textarea>
+			<br />
+			<input type="submit" value="Enviar"/>
+		</form>
+		
 </body>
 </html>
