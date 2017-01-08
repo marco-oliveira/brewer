@@ -14,20 +14,20 @@
 		<java.version>1.8</java.version>
 		<maven-compiler-pluging.version>3.2</maven-compiler-pluging.version>
 
-		<!-- Spring MVC -->
-		<spring-framework.version>4.3.0.RELEASE</spring-framework.version>
+		 <!-- Spring MVC -->
+        <spring-framework.version>4.3.5.RELEASE</spring-framework.version>
 
-		<!-- Servlet API -->
-		<servlet.version>3.1.0</servlet.version>
-		
-		<!-- Thymeleaf -->
-		<thymeleaf.version>3.0.0.RELEASE</thymeleaf.version>
-		
-		<!-- Thymeleaf - Layout Dialect -->
-		<thymeleaf-layout-dialect.version>2.0.1</thymeleaf-layout-dialect.version>
-		
-		<!-- Bean Validation / Hibernate Validator -->
-		<hibernate-validator.version>5.2.4.Final</hibernate-validator.version>
+        <!-- Servlet API -->
+        <servlet.version>3.1.0</servlet.version>
+
+        <!--Thymeleaf-->
+        <thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>
+
+        <!--Hibernate-validator-->
+        <hibernate-validator.version>5.2.4.Final</hibernate-validator.version>
+
+        <!--Thymeleaf-layout-dialect-->
+        <thymeleaf-layout-dialect.version>2.1.2</thymeleaf-layout-dialect.version>
 	</properties>
 
 	<build>
