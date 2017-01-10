@@ -55,8 +55,4 @@ public class JPAConfig {
 		return transactionManager;
 	}
 	
-	
-	
-	
-	
 }
