@@ -15,12 +15,16 @@ import com.cervejaria.brewer.model.Cerveja;
 import com.cervejaria.brewer.model.Origem;
 import com.cervejaria.brewer.model.Sabor;
 import com.cervejaria.brewer.repository.Estilos;
+import com.cervejaria.brewer.service.CadastroCervejaService;
 
 @Controller
 public class CervejasController {
 	
 	@Autowired
 	private Estilos estilos;
+	
+	@Autowired
+	private CadastroCervejaService cadastroCervejaService;
 	
 	@RequestMapping("/cervejas/novo")
 	public ModelAndView novo(Cerveja cerveja) {
@@ -37,8 +41,9 @@ public class CervejasController {
 			return novo(cerveja);
 		}
 		
+		cadastroCervejaService.salvar(cerveja);
+		
 		attributes.addFlashAttribute("mensagem", "Salvo com sucesso!");
-		System.out.println(">>>>>> Estilo "+ cerveja.getEstilo().getCodigo());
 		return new ModelAndView("redirect:novo");
 	}
 	
