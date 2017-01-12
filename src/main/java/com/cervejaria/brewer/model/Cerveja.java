@@ -13,9 +13,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+
+import com.cervejaria.brewer.validation.SKU;
 
 @Entity
 @Table(name="cerveja")
@@ -27,34 +33,49 @@ public class Cerveja implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	
+	@SKU
 	@NotBlank(message = "O Sku é obrigatório!")
 	private String sku;
 	
 	@NotBlank(message= "O Nome é obrigatório!")
 	private String nome;
 	
-	@Size(max=50, min=1)
+	@NotBlank(message= "A Descrição é obrigatória!")
+	@Size(max=50, min=5, message="A descrição deve estar de 5 a 50 caracteres!")
 	private String descricao;
 	
+	@NotNull(message="O valor é obrigatório!")
+	@DecimalMin(value="0.01")
+	@DecimalMax(value="9999.99", message="O valor não pode ultrapassar R$9.999,99 !")
 	private BigDecimal valor;
 	
-	@Column(name="teor_alcoolico")
+	@NotNull(message="O teor alcoolico é obrigatório!")
+	@DecimalMax(value="100.0", message="O teor não deve ser maior que 100% !")
+	@Column(name="teor_alcoolico") 
 	private BigDecimal teorAlcoolico;
 	
+	@NotNull(message="A comissão é obrigatória!")
+	@DecimalMax(value="100.0", message="A comissão não deve ser maior que 100% !")
 	private BigDecimal comissao;
 	
+	@NotNull(message="A quantidade é obrigatória!")
+	@Max(value = 9999, message="A quantidade em estoque deve ser menor que 9.999 !")
 	@Column(name="quantidade_estoque")
 	private Integer quantidadeEstoque;
 	
+	@NotNull(message="A origem é obrigatória!")
 	@Enumerated(EnumType.STRING)
 	private Origem origem;
 	
+	@NotNull(message="O sabor é obrigatório!")
 	@Enumerated(EnumType.STRING)
 	private Sabor sabor;
 	
 	@ManyToOne
 	@JoinColumn(name="codigo_estilo")
+	@NotNull(message="O estilo é obrigatório!")
 	private Estilo estilo;
+	
 	
 	public String getSku() {
 		return sku;
@@ -122,6 +143,7 @@ public class Cerveja implements Serializable {
 	public void setEstilo(Estilo estilo) {
 		this.estilo = estilo;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -129,6 +151,7 @@ public class Cerveja implements Serializable {
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
